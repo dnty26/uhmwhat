@@ -142,8 +142,9 @@
             } else if (noClickCount === 3) {
                 noButton.textContent = 'you\'re breaking my heart stop';
             } else if (noClickCount === 4) {
-                noButton.textContent = 'last chance...';
+                yesButton.textContent = 'nvm yes';
                 yesButton.style.display = 'inline-block';
+                noButton.textContent = 'last chance...';
             } else if (noClickCount >= 5) {
                 body.classList.add('dark-mode');
                 body.innerHTML = '<div style="font-size: 4em; text-align: center;">ok.</div>';
