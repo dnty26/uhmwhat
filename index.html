@@ -61,7 +61,7 @@
         }
 
         #yay {
-            font-size: 3em;
+            font-size: 4em; /* Increased font size */
             color: green;
             margin-bottom: 20px;
             display: none;
@@ -117,11 +117,12 @@
         const bouquetImage = document.getElementById('bouquet');
         const hornSound = document.getElementById('hornSound');
         const buttonsDiv = document.getElementById('buttons');
+        const questionDiv = document.getElementById('question'); // Get the question div
 
         setTimeout(() => {
             body.style.backgroundColor = '#FAE0BC';
             body.style.color = 'black';
-            document.getElementById('question').textContent = "will you go out with me?";
+            questionDiv.textContent = "will you go out with me?"; // Set question text
             bouquetImage.style.display = 'block';
             buttonsDiv.style.display = 'flex';
         }, 2000);
@@ -148,8 +149,9 @@
         });
 
         yesButton.addEventListener('click', () => {
-            body.style.backgroundColor = '#DC143C';
+            body.style.backgroundColor = '#DE3163';
             buttonsDiv.style.display = 'none';
+            questionDiv.style.display = 'none'; // Hide the question
             yayText.style.display = 'block';
             bouquetImage.style.marginTop = '20px';
             hornSound.play();
