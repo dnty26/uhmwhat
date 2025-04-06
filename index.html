@@ -135,6 +135,7 @@
             }, 500);
 
             if (noClickCount === 1) {
+                yesButton.style.display = 'none';
                 noButton.textContent = 'are you sure?';
             } else if (noClickCount === 2) {
                 noButton.textContent = 'really?';
@@ -142,6 +143,7 @@
                 noButton.textContent = 'you\'re breaking my heart stop';
             } else if (noClickCount === 4) {
                 noButton.textContent = 'last chance...';
+                yesButton.style.display = 'inline-block';
             } else if (noClickCount >= 5) {
                 body.classList.add('dark-mode');
                 body.innerHTML = '<div style="font-size: 4em; text-align: center;">ok.</div>';
