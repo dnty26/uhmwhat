@@ -61,7 +61,7 @@
         }
 
         #yay {
-            font-size: 4em; /* Increased font size */
+            font-size: 4em;
             color: green;
             margin-bottom: 20px;
             display: none;
@@ -101,8 +101,8 @@
     <img id="bouquet" src="bouquet.png" alt="Bouquet of Roses">
 
     <div id="buttons">
-        <button id="yesButton">yes</button>
-        <button id="noButton">no</button>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
     </div>
     <audio id="hornSound" src="horn.mp3"></audio>
     <audio id="backgroundMusic" src="background.mp3" loop autoplay style="display:none"></audio>
@@ -117,12 +117,12 @@
         const bouquetImage = document.getElementById('bouquet');
         const hornSound = document.getElementById('hornSound');
         const buttonsDiv = document.getElementById('buttons');
-        const questionDiv = document.getElementById('question'); // Get the question div
+        const questionDiv = document.getElementById('question');
 
         setTimeout(() => {
             body.style.backgroundColor = '#FAE0BC';
             body.style.color = 'black';
-            questionDiv.textContent = "will you go out with me?"; // Set question text
+            questionDiv.textContent = "will you go out with me?";
             bouquetImage.style.display = 'block';
             buttonsDiv.style.display = 'flex';
         }, 2000);
@@ -135,15 +135,15 @@
             }, 500);
 
             if (noClickCount === 1) {
-                yesButton.style.display = 'none';
+                yesButton.style.display = 'none'; // Hide yes button
                 noButton.textContent = 'are you sure?';
             } else if (noClickCount === 2) {
                 noButton.textContent = 'really?';
             } else if (noClickCount === 3) {
                 noButton.textContent = 'you\'re breaking my heart stop';
             } else if (noClickCount === 4) {
-                yesButton.textContent = 'nvm yes';
-                yesButton.style.display = 'inline-block';
+                yesButton.textContent = 'nvm yes'; // Change yes button text
+                yesButton.style.display = 'block'; // Show yes button
                 noButton.textContent = 'last chance...';
             } else if (noClickCount >= 5) {
                 body.classList.add('dark-mode');
@@ -154,7 +154,7 @@
         yesButton.addEventListener('click', () => {
             body.style.backgroundColor = '#DE3163';
             buttonsDiv.style.display = 'none';
-            questionDiv.style.display = 'none'; // Hide the question
+            questionDiv.style.display = 'none';
             yayText.style.display = 'block';
             bouquetImage.style.marginTop = '20px';
             hornSound.play();
