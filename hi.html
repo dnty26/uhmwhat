@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Like Me?</title>
+    <style>
+        body {
+            font-family: 'Brush Script MT', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #FAE0BC; /* Light beige background */
+            transition: background-color 0.5s ease;
+            overflow: hidden;
+        }
+
+        #question {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #yesButton {
+            background-color: green;
+            color: white;
+        }
+
+        #noButton {
+            background-color: red;
+            color: white;
+        }
+
+        #noButton.animated {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        #yay {
+            font-size: 3em;
+            color: green;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        #bouquet {
+            max-width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f06;
+            border-radius: 50%;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question">Do you like me?</div>
+    <div id="yay">YAY!</div>
+    <img id="bouquet" src="bouquet.png" alt="Bouquet of Roses">
+
+    <div id="buttons">
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+    <audio id="hornSound" src="horn.mp3"></audio>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const yayText = document.getElementById('yay');
+        const body = document.body;
+        let noClickCount = 0;
+        const bouquetImage = document.getElementById('bouquet');
+        const hornSound = document.getElementById('hornSound');
+
+        noButton.addEventListener('click', () => {
+            noClickCount++;
+            noButton.classList.add('animated');
+            setTimeout(() => {
+                noButton.classList.remove('animated');
+            }, 500);
+
+            if (noClickCount === 1) {
+                noButton.textContent = 'are you sure?';
+            } else if (noClickCount === 2) {
+                noButton.textContent = 'really?';
+            } else if (noClickCount === 3) {
+                noButton.textContent = 'you\'re breaking my heart stop';
+            } else if (noClickCount === 4) {
+                noButton.textContent = 'last chance...';
+            } else if (noClickCount >= 5) {
+                body.classList.add('dark-mode');
+                body.innerHTML = '<div style="font-size: 4em; text-align: center;">ok.</div>';
+            }
+        });
+
+        yesButton.addEventListener('click', () => {
+            yayText.style.display = 'block';
+            noButton.textContent = 'No';
+            noClickCount = 0;
+            hornSound.play();
+            createConfetti();
+        });
+
+        function createConfetti() {
+            for (let i = 0; i < 200; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
