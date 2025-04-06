@@ -102,6 +102,7 @@
         <button id="noButton">No</button>
     </div>
     <audio id="hornSound" src="horn.mp3"></audio>
+    <audio id="backgroundMusic" src="background.mp3" loop autoplay style="display:none"></audio>
 
     <script>
         const noButton = document.getElementById('noButton');
@@ -150,6 +151,7 @@
                 confetti.style.width = `${Math.random() * 10 + 5}px`;
                 confetti.style.height = `${Math.random() * 10 + 5}px`;
                 body.appendChild(confetti);
+                const backgroundMusic = document.getElementById('backgroundMusic');
             }
         }
     </script>
